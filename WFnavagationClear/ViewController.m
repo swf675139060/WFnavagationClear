@@ -18,6 +18,17 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    
+    WFNavigationBar *NavigationBar =  (WFNavigationBar *)self.navigationController.navigationBar;
+    
+    //方法1 通过是否添加layer设置
+//        [NavigationBar displayColorLayer:NO];
+    
+    //方法 2通过alpha来设置是否透明
+    [NavigationBar setBaralpha:0];
+    [[self.navigationController.navigationBar subviews] objectAtIndex:0].alpha = 0;
+    
+    //添加了当滚动时的渐变色
    
     
 }
@@ -25,18 +36,13 @@
 //  仅设置当前页面
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
-    WFNavigationBar *NavigationBar =  (WFNavigationBar *)self.navigationController.navigationBar;
-    
-    //方法1 通过是否添加layer设置
-//    [NavigationBar displayColorLayer:YES];
-    //方法 2通过alpha来设置是否透明
-    [NavigationBar setBaralpha:1];
-    [[self.navigationController.navigationBar subviews] objectAtIndex:0].alpha = 1;
+
 }
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navigationItem.title = @"设置透明色";
     [self creatUI];
 }
 
@@ -81,6 +87,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     UITableViewCell * cell = [[UITableViewCell alloc]init];
+    cell.textLabel.text = @"上滑一下吧，颜色渐变";
     return cell;
 }
 
@@ -95,7 +102,7 @@
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     
-    CGFloat alpha = scrollView.contentOffset.y/64;
+    CGFloat alpha = scrollView.contentOffset.y/100;
     WFNavigationBar *NavigationBar =  (WFNavigationBar *)self.navigationController.navigationBar;
     [NavigationBar setBaralpha:alpha];
     [[self.navigationController.navigationBar subviews] objectAtIndex:0].alpha = alpha;

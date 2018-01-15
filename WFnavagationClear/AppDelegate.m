@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "ViewController.h"
 #import "BaseNavigationController.h"
+#import "WFNavigationBar.h"
 
 @interface AppDelegate ()
 
@@ -21,7 +22,10 @@
     // Override point for customization after application launch.
     
     BaseNavigationController * baseNa = [[BaseNavigationController alloc]initWithRootViewController:[[ViewController alloc]init]];
-    
+    WFNavigationBar *navigationBar = (WFNavigationBar *)baseNa.navigationBar;
+    [navigationBar displayColorLayer:YES];
+    //去掉navig下面的线
+    [navigationBar setBackgroundImage:[[UIImage alloc] init] forBarMetrics:UIBarMetricsDefault];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];
     self.window.rootViewController = baseNa;

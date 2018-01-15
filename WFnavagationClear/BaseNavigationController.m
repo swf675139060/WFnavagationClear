@@ -19,6 +19,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.navigationBar setBarTintColor:[UIColor redColor]];
+    [self.navigationBar setBackgroundImage:[[UIImage alloc] init] forBarMetrics:UIBarMetricsDefault];
 }
 
 - (id)init {
@@ -36,6 +37,8 @@
     
     return self;
 }
-
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
+}
 
 @end
