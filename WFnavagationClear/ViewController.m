@@ -27,9 +27,9 @@
     [super viewWillDisappear:animated];
     WFNavigationBar *NavigationBar =  (WFNavigationBar *)self.navigationController.navigationBar;
     
-//    //宁宁这个是直接隐藏
+    //方法1 通过是否添加layer设置
 //    [NavigationBar displayColorLayer:YES];
-    //宁宁这个是设置透明纸值
+    //方法 2通过alpha来设置是否透明
     [NavigationBar setBaralpha:1];
     [[self.navigationController.navigationBar subviews] objectAtIndex:0].alpha = 1;
 }
